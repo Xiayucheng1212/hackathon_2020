@@ -2,5 +2,26 @@ body{
 	width: 80%;
 	margin: auto;
 	background-color: #BBFFBB;
-	
+}
+.fp_divs{
+	width: 500px;
+	height: 300px;
+	margin: 20px;
+	background-color: white;
+	border-radius: 20px;
+}
+#proj_map{
+	position: fixed;
+	left: 200px;
+	top: 30px;
+}
+#proj_list{
+	position: fixed;
+	right: 200px;
+	top: 30px;
+}
+#account{
+	position: fixed;
+	left: 200px;
+	bottom: 30px;
 }

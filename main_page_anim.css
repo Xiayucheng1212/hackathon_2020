@@ -1,0 +1,13 @@
+.circle_anim{
+    animation-name: bigger;
+    animation-duration: 1.2s;
+    animation-fill-mode: forwards;
+}
+@keyframes bigger{
+    0%{
+        transform: scale(1);
+    }
+    100%{
+        transform: scale(20);
+    }
+}

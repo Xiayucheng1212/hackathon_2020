@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="travel_projects_map.css">
+		<title></title>
+	</head>
+	<body>
+	<script src="travel_projects_map.js"></script> 
+		<button id="btn" >放置地圖標記</button>
+		<div id ="map" height ="80%" width ="80%"  ></div>
+		<script>
+		  var map;
+		  function initMap() {
+			map = new google.maps.Map(document.getElementById('map'), {
+			  center: {lat: 40.689104, lng: -74.044599},
+			  zoom: 16
+			});
+		  }
+		</script>
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCPMrP8fo_E-XxpNEGt5W-EwzxuYWWGrYI&callback=initMap"
+					async defer>
+		</script>
+	</body>
+</html>

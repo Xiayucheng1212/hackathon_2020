@@ -12,11 +12,16 @@
     }
 }
 
-.fp_titles_appear{
+.fp_titles_appear_delay{
     animation-name: appear;
-    animation-duration: 1.5s;
+    animation-duration: 1s;
     animation-fill-mode: forwards;
     animation-delay: 0.5s;
+}
+.fp_titles_appear{
+    animation-name: appear;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
 }
 @keyframes appear{
     0%{
@@ -29,7 +34,7 @@
 
 .fp_intro_appear{
     animation-name: appear;
-    animation-duration: 1.5s;
+    animation-duration: 1s;
     animation-fill-mode: forwards;
 }
 @keyframes appear{

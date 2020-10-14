@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>創建旅程</title>
+        <meta charset="utf-8">
+        <link rel="shortcut icon" href="#"/>
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+        <link rel="stylesheet" href="{{url_for('static',filename='dist/css/pignose.calendar.css')}}">
+        <script src="{{url_for('static',filename='dist/js/pignose.calendar.min.js')}}"></script>
+        <script src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
+        <script src="https://kit.fontawesome.com/f2f4c10c79.js" crossorigin="anonymous"></script>
+        <script src="{{ url_for('static', filename='js/liff.js') }}" type="text/javascript"></script>
+    </head>
+    <body>
+        <div class="image_container">
+            <img class="cover" src="https://tnimage.s3.hicloud.net.tw/photos/2019/10/07/1570443526-5d9b1106c7c9c.jpg"/>
+        </div>
+        <div class="container">
+            <form method="POST" id="form_project">
+                <p>旅程名稱</p>
+                <input name="project_name" value="{{request.form.project_name}}">
+            </form>
+            <p>地點</p>
+            <input id="place">
+            <p>日期</p>
+            <input type="text" id="text-calendar" class="calendar" />
+            <script type="text/javascript">
+                $('.calendar').pignoseCalendar({multiple:true,buttons:true});
+            </script>
+            <p>成員</p>
+            <div class="member_group">
+                <img class="circle_wrapper" id="profile_img">
+                <div class="circle_wrapper invite_wrapper">
+                    <i class="fas fa-share fa-2x"></i>
+                </div>
+            </div>
+            <input type="submit" value="創建" form="form_project">
+        </div>
+    </body>
+</html>

@@ -12,11 +12,25 @@
     }
 }
 
-.fp_titles_anim{
+.fp_titles_appear{
     animation-name: appear;
     animation-duration: 1.5s;
     animation-fill-mode: forwards;
     animation-delay: 0.5s;
+}
+@keyframes appear{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+.fp_intro_appear{
+    animation-name: appear;
+    animation-duration: 1.5s;
+    animation-fill-mode: forwards;
 }
 @keyframes appear{
     0%{

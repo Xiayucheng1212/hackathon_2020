@@ -3,6 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import Album from './Album'
 
 Vue.config.productionTip = false
 
@@ -12,4 +13,18 @@ new Vue({
   router,
   components: { App },
   template: '<App/>'
+})
+
+new Vue({
+  el: '#album',
+  router,
+  components: { Album },
+  template: '<Album/>'
+})
+
+var loc_edit = new Vue({
+  el: '#location',
+  data: {
+    message: ''
+  }
 })

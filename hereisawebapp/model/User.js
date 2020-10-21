@@ -1,5 +1,21 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://8.210.63.210:27017/separate_orders',{ useFindAndModify: false })
-.then(()=>{console.log('數據庫連結成功');})
-.catch(()=>{console.log('數據庫連結失敗');
+// 8.210.63.210:27017
+
+
+const userSchema = new mongoose.Schema({
+    // 用戶名
+    lineId:{
+        required: true,
+        type: String
+    },
+    username: String,
+    profile_path: String,
+    projects:[{ type: mongoose.Schema.Types.ObjectId, ref:"Project"}],
+    
 });
+
+const User = mongoose.model('User', userSchema);
+
+
+
+module.exports = {User};

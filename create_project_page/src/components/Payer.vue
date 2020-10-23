@@ -1,8 +1,8 @@
 <template>
   <div class="project">
     <div id="nav">
-      <router-link to="/addRecord">Amount</router-link> |
-      <router-link to="/project">Who paid</router-link>
+      <span>Who paid?</span>
+      <span><i>${{amount}}</i></span>
     </div>
     <ul class="member_list_wrapper" id="member_list_wrapper">
       <Member v-for="(mem,index) in member" :key=mem.name :index=index :name=mem.name :state=mem.state :paidAmount=mem.paidAmount v-on:checkbox="handleCheckboxChanged" v-on:amountEdited="updateAmount"></Member>
@@ -13,18 +13,13 @@
 <script>
 import Member from '@/components/Member.vue'
 export default {
-  name: "project",
+  name: "payer",
   components: {
     Member
   },
-  data(){
-    return{
-      amount: 1000,//要從紀錄頁取得
-      //要從server取得
-      member: [
-        {name:"aaa",state:false,edited:false,paidAmount:null},{name:"bbb",state:false,edited:false,paidAmount:null},{name:"ccc",state:false,edited:false,paidAmount:null}
-      ]
-    }
+  props: {
+    amount: Number,
+    member: Array
   },
   methods: {
     handleCheckboxChanged(index){
@@ -65,15 +60,15 @@ export default {
 
 <style scoped>
 #nav {
-  padding: 30px;
+  padding: 10px;
 }
 
-#nav a {
+a {
   font-weight: bold;
   color: #2c3e50;
 }
 
-#nav a.router-link-exact-active {
+a.router-link-exact-active {
   color: #42b983;
 }
 .member_list_wrapper {

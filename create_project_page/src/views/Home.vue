@@ -6,11 +6,32 @@
     <div class="container">
       <form method="POST" id="form_project">
         <p>旅程名稱</p>
-        <input name="project_name">
+        <input name="project_name" v-model="project_name">
         <p>地點</p>
-        <input id="place" name="place">
+        <select name="place" v-model="place">
+          <option value="Keelung">基隆</option>
+          <option value="NewTaipei">新北</option>
+          <option value="Taipei">臺北</option>
+          <option value="Yilan">宜蘭</option>
+          <option value="Taoyuan">桃園</option>
+          <option value="Hsinchu">新竹</option>
+          <option value="Miaoli">苗栗</option>
+          <option value="Taichung">臺中</option>
+          <option value="Changhua">彰化</option>
+          <option value="Nantou">南投</option>
+          <option value="Yunlin">雲林</option>
+          <option value="Chiayi">嘉義</option>
+          <option value="Tainan">臺南</option>
+          <option value="Kaohsiung">高雄</option>
+          <option value="Pingtung">屏東</option>
+          <option value="Taitung">臺東</option>
+          <option value="Hualien">花蓮</option>
+          <option value="Penghu">澎湖</option>
+          <option value="Kinmen">金門</option>
+          <option value="Lienchiang">連江</option>
+        </select>
         <p>日期</p>
-        <input type="text" id="text-calendar" class="calendar" name="date"/>
+        <input type="text" id="text-calendar" class="calendar" name="date" />
       </form>
       <p>成員</p>
       <div class="member_group">
@@ -19,15 +40,12 @@
             <i class="fas fa-share fa-2x"></i>
         </div>
       </div>
-      <input type="submit" value="創建" form="form_project">
+      <input type="submit" value="創建" form="form_project" @click="uploadData">
     </div>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-// import HelloWorld from '@/components/HelloWorld.vue'
-
 export default {
   name: 'Home',
   components: {
@@ -37,6 +55,8 @@ export default {
     return {
       UserImg: '../assets/logo.png',
       UserName: '',
+      project_name: null,
+      place: null,
     }
   },
   beforeCreate(){
@@ -64,6 +84,9 @@ export default {
     });
   },
   methods:{
+    uploadData(){//上傳到server
+
+    },
     shareTarget(){
       console.log(document.getElementsByName("project_name")[0].value);
       window.liff.shareTargetPicker([
@@ -186,7 +209,7 @@ p{
     font-size: 5vw;
     margin: 2vw 0;
 }
-input{
+input,select{
     font-size: 5vw;
     width: 80vw;
 }

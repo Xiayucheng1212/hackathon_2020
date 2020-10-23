@@ -5,19 +5,19 @@
       <label :for="name"></label>
     </div>
     <h3 class="todo-app__item-detail">{{name}}</h3>
-    <input type="text" ref="inputAmount" v-show="state" :value="paidAmount" @keyup="emitAmount">
+    <input type="text" ref="inputAmount" v-show="state" :value="cost" @keyup="emitAmount">
     <i class="fas fa-pen" @click="editAmount" v-show="state"></i>
   </li>
 </template>
 
 <script>
 export default {
-  name: 'Member',
+  name: 'MemberCost',
   props: {
     index: Number,
     name: String,
     state: Boolean,
-    paidAmount: Number
+    cost: Number
   },
   data(){
     return{

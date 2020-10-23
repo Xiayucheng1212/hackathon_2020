@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <img src="./images/travel.jpg" width="250">
+        <h1>記帳</h1>
+
+        <!-- 選單 -->
+        <ul>
+            <li><a href="#" type="button" @click="menu1">金額</a></li>
+            <li><a href="#" type="button" @click="menu2">誰付的錢？</a></li>
+            <li><a href="#" type="button" @click="menu3">為誰？</a></li>
+        </ul>
+        <hr />
+
+        <!-- 「金額」 -->
+        
+        <div v-if="menu == 1">
+            <h3>[金額]</h3>
+            <!-- 總金額 -->
+            <p>
+                <h4>帳單金額：</h4>
+                <input v-model="message_money">
+                <!-- 輸入品項 -->
+            </p>
+            <p>
+                <h4>輸入品項：</h4>
+                <input v-model="message_sort">
+            </p>
+            <p>
+                <!-- 註釋 -->
+                <h4>註釋：</h4>
+                <input v-model="message_note">
+                <!-- 日期 -->
+                <h4>日期：</h4>
+            </p>
+        </div>
+
+        <!-- 「誰付的錢？」 -->
+        <div v-else-if="menu == 2">
+            <h3>[誰付的錢？]</h3>
+            <!-- 支付者 -->
+            <p>支付者：</p>
+                <select v-model="selected">
+                    <option>小夏</option>
+                    <option>小劉</option>
+                    <option>Wiga</option>
+                    <option>Yoyo</option>
+                </select>
+        </div>
+
+        <!-- 「為誰？」 -->
+        <div v-else>
+            <h3>[為誰？]</h3>
+
+        </div>
+        
+    </div>
+</body>
+
+<style>
+
+</style>
+
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            menu:"1",
+            message_money:'',
+            message_note:'',
+            message_sort:','
+        },
+        watch: {
+            
+        },
+        methods: {
+            menu1() {
+                this.menu=1;
+            },
+            menu2(){
+                this.menu=2;
+            },
+            menu3(){
+                this.menu=3;
+            }
+        },
+    })
+
+</script>
+
+</html>

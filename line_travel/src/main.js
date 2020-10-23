@@ -5,11 +5,14 @@ import liff from '@line/liff';
 import axios from 'axios';
 import './plugins/element.js'
 import 'element-ui/lib/theme-chalk/index.css'
+import qs from 'qs';
 
 Vue.config.productionTip = false
 
-axios.defaults.baseURL = 'http://localhost:3000/'
+// axios.defaults.baseURL = 'https://hereisanewapp.herokuapp.com/'
+axios.defaults.baseURL = "http://localhost:3000/"
 Vue.prototype.$http = axios;
+Vue.prototype.$qs = qs;
 
 
 new Vue({

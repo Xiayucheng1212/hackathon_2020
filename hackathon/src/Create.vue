@@ -1,7 +1,9 @@
 <template>
   <div id="app">
-    <div class="app_inner">相簿名稱</div>
-    <input id="locate_name_disabled" class="app_inner" v-model="place">
+    <div id="top_bar">建立相簿</div>
+    <div id="album_name">相簿名稱:</div>
+    <input id="locate_name_disabled" placeholder="請輸入相簿名稱" v-model="place">
+    <div id="add_new_photo">新增照片:</div>
     <hr id="hr1">
     <div id="album" :upload="'123'">
       <el-upload
@@ -18,31 +20,33 @@
       </el-upload>
     </div>
     <hr id="hr2">
-    <button id="bottom" @click="transtoBase64">Create</button>
+    <button id="bottom" @click="transtoBase64">建立</button>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'App',
+  name: 'Create',
   data(){
     return{
       formData: new FormData(),
       fileList:[],
       tagNameList: [],
-      bottom_message: "Update",
-      project_id: '5f93c69ec1cf340017d9b33b',
+      project_id: '5f94019792bf49001740ff1c',
       place: '',
       position:{
-        lat: "223",
-        lng: "223"
+        lat: "24.82",
+        lng: "120.88"
       },
     }
   },
   methods:{
     async transtoBase64() {
       const files = this.$refs.upload.uploadFiles;
-      console.log(files);
+      if(files){
+        console.log(files);
+        this.$message.error('請至少選擇一張圖片!');
+      }
 
       var reader = new FileReader();
       reader.readAsDataURL(files[0].raw);
@@ -60,8 +64,8 @@ export default {
           params = this.$qs.stringify({
             img0: imgsrc0,
             img1: imgsrc1,
-            lat: this.lat,
-            lng: this.lng,
+            lat: this.position.lat,
+            lng: this.position.lng,
             place: this.place,
             project_id: this.project_id
           });
@@ -74,6 +78,13 @@ export default {
           if (res) {
             console.log(res);
             console.log("成功接收");
+            this.$message({
+              message: '成功創建相簿!',
+              type: 'success'
+            });
+          }
+          else{
+            this.$message.error('創建失敗...');
           }
         };
       };
@@ -101,23 +112,35 @@ export default {
   color: #2c3e50;
   text-align: center;
   height: 760px;
-  padding-top: 7%;
 }
-.app_inner{
-  display: inline;
-  margin: 5px;
+#top_bar{
+  padding: 5%;
+  font-size: 30px;
+  color: white;
+  background-color: #6633cc;
 }
-#hr1{
+#album_name{
   margin-top: 6%;
+  margin-bottom: 3%;
+  background-color: #E6E6FA;
 }
-#bottom{
-  margin-top: -1.5%;
-  width: 100%;
-  height: 80px;
-  border: none;
+#locate_name_disabled{
+  margin-top: 15px;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom-color: #c0c0c0;
+  font-size: 25px;
+  text-align: center;
+  width: 80%;
+}
+#add_new_photo{
+  margin-top: 7%;
+  margin-bottom: 6%;
+  background-color: #E6E6FA;
 }
 #album{
-  height: 590px;
+  height: 430px;
   margin-top: -6px;
   margin-bottom: -5px;
   padding: 15px;
@@ -127,5 +150,14 @@ export default {
 i{
   width: 100px;
   height: 100px;
+}
+#bottom{
+  margin-top: 1.9%;
+  width: 75%;
+  height: 50px;
+  font-size: 23px;
+  color: white;
+  background-color: #6633cc;
+  border: none;
 }
 </style>

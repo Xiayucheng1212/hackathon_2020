@@ -1,17 +1,17 @@
 <template>
     <div>
-        <div v-if="state == 3">
+        <div v-if="state == 3">//過往的紀錄
             <div class="btn_next" @click="()=>this.state = 4">Debts</div>
             <Record v-for="record in records" :key="record.name" :data="record"></Record>
         </div>
         <div class="btn_next" v-if="state==3" @click="handleClick(0)">+</div>
 
-        <div v-if="state == 4">
+        <div v-if="state == 4">//所有人的欠債
             <div class="btn_next" @click="()=>this.state = 3">＜</div>
             <Debt :data="records"></Debt>
         </div>
 
-        <div v-if="state == 0">
+        <div v-if="state == 0">//紀錄
             <h4>帳單金額：</h4>
             <input v-model="amount">
             <h4>輸入品項：</h4>
@@ -22,10 +22,12 @@
             <input type="text" id="text-calendar" class="calendar" name="date"/>
         </div>
         <div class="btn_next" v-if="state==0&&amount!=null" @click="handleClick(1)">Who Paid >></div>
-
+        
+        //支付者
         <Payer v-if="state==1" :amount='Number(amount)' :member='member'></Payer>
         <div class="btn_next" v-if="state==1&&checkValid(1)" @click="()=>this.state = 2">Paid For >></div>
 
+        //要付錢的人
         <Paidfor v-if="state==2" :amount='Number(amount)' :member='member'></Paidfor>        
         <div class="btn_next" v-if="state==2&&checkValid(2)" @click="uploadRecord">Save</div>
     </div>

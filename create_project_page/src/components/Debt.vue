@@ -27,7 +27,6 @@ export default {
             }
             this.debt_array.push({name:this.data[0].user[i].name,debt:sum})
         }
-        console.log(this.debt_array)
     }
 }
 </script>

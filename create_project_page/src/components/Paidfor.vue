@@ -52,8 +52,6 @@ export default {
       })
     },
     updateAmount(data){
-      // console.log('updateAmount')
-      // console.log(data[1])
       if (Number(data[1]) != 0){
         this.member[data[0]].edited = true
         this.member[data[0]].cost = Number(data[1])

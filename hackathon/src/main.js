@@ -1,30 +1,23 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
 import App from './App'
 import router from './router'
-import Album from './Album'
+import axios from 'axios'
+import qs from 'qs'
 
+Vue.use(ElementUI)
 Vue.config.productionTip = false
 
+axios.defaults.baseURL = 'https://hereisanewapp.herokuapp.com/'
+Vue.prototype.$http = axios
+Vue.prototype.$qs = qs
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
   components: { App },
   template: '<App/>'
-})
-
-new Vue({
-  el: '#album',
-  router,
-  components: { Album },
-  template: '<Album/>'
-})
-
-var loc_edit = new Vue({
-  el: '#location',
-  data: {
-    message: ''
-  }
 })

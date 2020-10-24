@@ -14,8 +14,8 @@
         <!-- 選單 -->
         <nav>
             <h1>記 帳</h1>
-            <ul>
-                <li><a class="menu1" href="#" type="button" @click="menu1">金額</a></li>
+            <ul class="menu_ul">
+                <li ><a class="menu1" href="#" type="button" @click="menu1">金額</a></li>
                 <li><a class="menu2" href="#" type="button" @click="menu2">誰付的錢？</a></li>
                 <li><a class="menu3" href="#" type="button" @click="menu3">為誰？</a></li>
             </ul>
@@ -24,29 +24,46 @@
 
         <!-- 「金額」 -->
         <div v-if="menu == 1">
-            <h3>[金額]</h3>
+            
             <!-- 總金額 -->
             <p>
-                <h4>帳單金額：</h4>
-                <input v-model="message_money">
+                
+                <input  v-model="message_money" class="money" placeholder="點擊輸入帳單金額">
                 <!-- 輸入品項 -->
             </p>
+            <hr />
             <p>
-                <h4>輸入品項：</h4>
-                <input v-model="message_sort">
+                <h5>類別：</h5>
+                <img src="./images/food.png" width="100" class="sort">
+                <img src="./images/accommodation.png" width="100" class="sort">
+                <img src="./images/transportation.png" width="100" class="sort">
+                <img src="./images/shopping.png" width="100" class="sort">
+                <img src="./images/play.png" width="100" class="sort">
+                <img src="./images/others.png" width="100" class="sort">
             </p>
             <p>
                 <!-- 註釋 -->
-                <h4>註釋：</h4>
-                <input v-model="message_note">
+                <h5>備註：</h5>
+                <table>
+                    <tr>
+    
+                        <td rowspan="2"><img src="./images/pen.png" class="pen"></td>
+                        <td><input v-model="message_note" class="msgnote" placeholder="點擊新增備註"></td>
+                    </tr>
+                    <tr>
+                        <td><hr class="note" /></td>
+                    </tr>
+                </table>
+                
+    
                 <!-- 日期 -->
-                <h4>日期：</h4>
+                <h5>日期：</h5>
             </p>
         </div>
 
         <!-- 「誰付的錢？」 -->
         <div v-else-if="menu == 2">
-            <h3>[誰付的錢？]</h3>
+            
             <!-- 支付者 -->
             <p>支付者：</p>
                 <select v-model="selected">
@@ -59,7 +76,7 @@
 
         <!-- 「為誰？」 -->
         <div v-else>
-            <h3>[為誰？]</h3>
+            
 
         </div>
         
@@ -77,7 +94,7 @@
             menu:"1",
             message_money:'',
             message_note:'',
-            message_sort:','
+            
         },
         watch: {
             

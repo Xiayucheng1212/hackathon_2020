@@ -1,5 +1,7 @@
 <template>
-  <div id="app">
+  <div id="app" v-loading="loading"
+    element-loading-text="創建相簿中..."
+    element-loading-background="rgba(0, 0, 0, 0.8)">
     <div id="top_bar">建立相簿</div>
     <div id="album_name">相簿名稱:</div>
     <input id="locate_name_disabled" placeholder="請輸入相簿名稱" v-model="place">
@@ -38,14 +40,16 @@ export default {
         lat: "24.82",
         lng: "120.88"
       },
+      loading: false,
     }
   },
   methods:{
     async transtoBase64() {
+      this.loading = true
       const files = this.$refs.upload.uploadFiles;
-      if(files){
+      if(files.length !=2){
         console.log(files);
-        this.$message.error('請至少選擇一張圖片!');
+        this.$message.error('請至少選擇一張圖片');
       }
 
       var reader = new FileReader();
@@ -75,6 +79,7 @@ export default {
               "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
             }
           });
+          this.loading = false
           if (res) {
             console.log(res);
             console.log("成功接收");
@@ -106,12 +111,12 @@ export default {
 
 <style>
 #app{
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: 'Microsoft YaHei','Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
   text-align: center;
-  height: 760px;
+  height: 812px;
 }
 #top_bar{
   padding: 5%;

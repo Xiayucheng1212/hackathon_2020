@@ -1,5 +1,7 @@
 <template>
-  <div id="app">
+  <div id="app" v-loading="loading"
+    :element-loading-text="loading_msg"
+    element-loading-background="rgba(0, 0, 0, 0.8)">
     <div id="top_bar">更新相簿</div>
     <div id="album_name">相簿名稱:</div>
     <input id="locate_name_disabled" v-model="place" readonly>
@@ -38,14 +40,19 @@ export default {
         lat: "24.82",
         lng: "120.88"
       },
+      loading: true,
+      loading_msg: '',
     }
   },
   created(){
+    this.loading_msg = "載入相簿中..."
     this.getAlbumName()
     this.getImages()
   },
   methods:{
     async updateAlbum() {
+      this.loading_msg = "更新相簿中..."
+      this.loading = true
       const files = this.$refs.upload.uploadFiles;
       console.log(files);
 
@@ -75,6 +82,7 @@ export default {
             "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
           }
         });
+        this.loading = false
         if (res) {
           console.log(res);
           console.log("成功接收");
@@ -102,6 +110,9 @@ export default {
     async getImages(){
       var res = await this.$http.get('https://hereisanewapp.herokuapp.com/getAlbum?lat='+this.position.lat+"&lng="+this.position.lng+"&project_id="+this.project_id)
       console.log(res);
+      if(res){
+        this.loading = false
+      }
       for(let i=0;i<res.data.photos.length;i++){
         this.fileList.push({name:"img"+i, url:res.data.photos[i].path})
       }
@@ -117,12 +128,12 @@ export default {
 
 <style>
 #app{
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: 'Microsoft YaHei','Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
   text-align: center;
-  height: 760px;
+  height: 812px;
 }
 #top_bar{
   padding: 5%;
@@ -163,8 +174,8 @@ i{
   height: 100px;
 }
 #bottom{
-  margin-top: 1.9%;
-  width: 75%;
+  margin-top: 2.3%;
+  width: 250px;
   height: 50px;
   font-size: 23px;
   color: white;

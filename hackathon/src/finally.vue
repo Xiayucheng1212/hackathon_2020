@@ -18,8 +18,7 @@
       </el-upload>
     </div>
     <hr id="hr2">
-    <button id="bottom" @click="transtoBase64" v-if="firstTime">Create</button>
-    <button id="bottom" @click="updateAlbum" v-else>Update</button>
+    <button id="bottom" @click="updateAlbum">Update</button>
   </div>
 </template>
 
@@ -33,61 +32,18 @@ export default {
       tagNameList: [],
       bottom_message: "Update",
       project_id: '5f93c69ec1cf340017d9b33b',
-      place: '早餐店*5',
+      place: '早餐店*6',
       position:{
-        lat: "2",
-        lng: "2"
+        lat: "3",
+        lng: "3"
       },
-      firstTime:true,
     }
   },
   created(){
-    if(!this.firstTime){
-      this.getAlbumName()
-      this.getImages()
-    }
-    else{
-    }
+    this.getAlbumName()
+    this.getImages()
   },
   methods:{
-    async transtoBase64() {
-      const files = this.$refs.upload.uploadFiles;
-      console.log(files);
-
-      var reader = new FileReader();
-      reader.readAsDataURL(files[0].raw);
-      var imgsrc0 = "";
-      var imgsrc1 = "";
-      var params = {};
-      reader.onload = async e => {
-        imgsrc0 = e.target.result;
-        console.log(imgsrc0);
-
-        reader.readAsDataURL(files[1].raw);
-        reader.onload = async e => {
-          imgsrc1 = e.target.result;
-          console.log(imgsrc1);
-          params = this.$qs.stringify({
-            img0: imgsrc0,
-            img1: imgsrc1,
-            lat: "2",
-            lng: "2",
-            place: "早餐店*5",
-            project_id: "5f93c69ec1cf340017d9b33b"
-          });
-          var res = await this.$http.post("testForCreateAlbum", params, {
-            // 设置请求头
-            headers: {
-              "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
-            }
-          });
-          if (res) {
-            console.log(res);
-            console.log("成功接收");
-          }
-        };
-      };
-    },
     async updateAlbum() {
       const files = this.$refs.upload.uploadFiles;
       console.log(files);
@@ -107,9 +63,9 @@ export default {
           img0: imgsrc0,
           img1: imgsrc1,
           img2: imgsrc2,
-          lat: "2",
-          lng: "2",
-          place: "早餐店*5",
+          lat: "3",
+          lng: "3",
+          place: "早餐店*6",
           project_id: "5f93c69ec1cf340017d9b33b"
         });
         var res = await this.$http.post("updateAlbum", params, {
